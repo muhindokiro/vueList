@@ -34,7 +34,6 @@ export default {
   height:100%;
 }
 .internalBody{
-  background-color: aqua;
   height: 100%;
 }
 </style>

@@ -15,6 +15,8 @@
 </template>
 
 <script>
+//js module
+//objects
 export default {
   name: 'HelloWorld',
   props: {

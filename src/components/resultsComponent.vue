@@ -1,37 +1,46 @@
 <template>
   <div class="lineitems">
-      <div v-for="item in items" :key="item" class="idem">
-          <line-item-component :theitem='item'/>
-      </div>
+    <div v-for="(item,index) in items" :key="item" class="idem">
+      <line-item-component :theitem="item" @delete="ondelete" :index="index" @select="onselect" />
+    </div>
+   
   </div>
+  
 </template>
 
 <script>
-import lineItemComponent from './lineItemComponent'
+import lineItemComponent from "./lineItemComponent";
+
 export default {
-    components:{
-        lineItemComponent 
+  components: {
+    lineItemComponent
+  },
+  props: ["items"],
+
+  methods: {
+    ondelete: function(value) {
+      console.log(value);
+      this.$emit("delete",value)
     },
-data: ()=>({
-    items:[
-        {name:"task 1", date:"Today 8:00 pm", isSelected:true},
-        {name:"task 2", date:"Monday 9:15 pm", isSelected:false},
-        {name:"task 3", date:"Monday 11:15 pm", isSelected:false},
-        {name:"task 4", date:"Wednesday 2:30 pm", isSelected:false},
-    ]
-})
-}
+    onselect: function(value) {
+      console.log(value);
+      this.$emit("select",value)
+    },
+    
+
+  }
+};
 </script>
 
 <style>
-.lineitems{
-    border: 1px solid  #cccccc;
-    border-radius: 5px;
+.lineitems {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
 }
-.idem :hover{
-    background-color: #e8e8e8;
+.idem :hover {
+  background-color: #e8e8e8;
 }
-.idem{
-    background-color: white;
+.idem {
+  background-color: white;
 }
 </style>
